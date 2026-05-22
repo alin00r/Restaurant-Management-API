@@ -5,6 +5,7 @@ import { RestaurantModule } from './restaurants/restaurants.module';
 import { CONFIG_VALIDATION_JOI } from './generic/constants/config.codes';
 import { RestaurantConfigService } from './generic/services/config.service';
 import { GenericModule } from './generic/generic.module';
+import { UserModule } from './users/users.module';
 
 
 @Module({
@@ -22,7 +23,8 @@ import { GenericModule } from './generic/generic.module';
         uri: configService.databaseConfig.host
       })
     }),
-    RestaurantModule
+    RestaurantModule,
+    UserModule
   ],
   controllers: [],
   providers: [],

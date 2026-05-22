@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsLatitude, IsLongitude, IsOptional } from 'class-validator';
 import { Type } from 'class-transformer';
-import { TinyPaginationDto } from 'src/generic/types/pagination.tiny.dto';
+import { TinyPaginationDto } from '../../generic/types/pagination.tiny.dto';
 
 export class NearbyRestaurantsDto extends TinyPaginationDto {
   @ApiProperty({ type: Number, required: true, example: 30.051493})
