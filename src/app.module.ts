@@ -1,8 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { RestaurantModule } from './restaurants/restaurants.module';
 import { CONFIG_VALIDATION_JOI } from './generic/constants/config.codes';
 import { RestaurantConfigService } from './generic/services/config.service';
 import { GenericModule } from './generic/generic.module';
@@ -23,8 +22,9 @@ import { GenericModule } from './generic/generic.module';
         uri: configService.databaseConfig.host
       })
     }),
+    RestaurantModule
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
