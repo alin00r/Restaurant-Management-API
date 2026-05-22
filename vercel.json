@@ -3,7 +3,7 @@
   "name": "Restaurant-Management-API",
   "builds": [
     {
-      "src": "src/main.js",
+      "src": "dist/main.js",
       "use": "@vercel/node",
       "config": {
         "includeFiles": ["node_modules/swagger-ui-dist/**"]
@@ -12,8 +12,8 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "src/main.js"
+      "src": "\/(.*)",
+      "dest": "dist/main.js"
     }
   ]
 }
