@@ -3,8 +3,8 @@ import mongoose from 'mongoose';
 import { BaseEntity } from './../../generic/types/entity-base.entity';
 import { EntityOmited } from '../../generic/types/entity-omited-fields.type';
 import { MongoGeoPoint } from '../../generic/repository/schemas/geo-point.schema';
-import { EntityType } from 'src/generic/types/helper-types';
-
+import { EntityType } from '../../generic/types/helper-types';
+import { EntityId } from '../../generic/types/entity-id.type';
 @Schema({
   timestamps: {
     createdAt: 'created_at',
@@ -30,12 +30,15 @@ export class RestaurantEntity extends BaseEntity {
   cuisines: string[];
    @Prop({ type: mongoose.Schema.Types.Mixed, required: true })
   location: MongoGeoPoint;
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }] })
+  followers?: EntityId[];
   constructor(args: EntityOmited<RestaurantEntity>) {
     super();
     this.translations = args.translations;
     this.slug = args.slug;
     this.cuisines = args.cuisines;
     this.location = args.location;
+    this.followers = args.followers;
   }
 }
 

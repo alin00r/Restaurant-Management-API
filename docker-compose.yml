@@ -1,0 +1,39 @@
+services:
+  mongo:
+    image: mongo:7.0
+    container_name: restaurant-mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          "mongosh --quiet --eval 'db.runCommand({ ping: 1 }).ok' > /dev/null",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  api:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: restaurant-api
+    depends_on:
+      mongo:
+        condition: service_healthy
+    environment:
+      MODE: DEV
+      PORT: 8080
+      MONGODB_URI: mongodb://mongo:27017/restaurant-management-api
+      SUPPORTED_LANGUAGES: en
+      ALLOWED_ORIGINS: '*'
+    ports:
+      - '3000:3000'
+    restart: unless-stopped
+
+volumes:
+  mongo-data:
