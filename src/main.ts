@@ -6,7 +6,7 @@ import {
   NestFastifyApplication
 } from '@nestjs/platform-fastify';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import * as compression from 'compression';
+import compression from 'compression';
 import mongoose from 'mongoose';
 import { logExecutionTime, LoggerVerbosity } from 'mongoose-execution-time';
 import * as qs from 'qs';
